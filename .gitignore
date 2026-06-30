@@ -1,0 +1,18 @@
+*.log
+
+# Save games on host (server install + Wine use Docker volumes or ./data/* on Linux compose)
+data/saves/**
+!data/saves/.gitkeep
+# Linux compose: large dirs under data/ (auto-created on first up)
+data/server/
+data/wine/
+data/steam-home/
+
+# Config may contain passwords — use *.cfg.example in git
+config/config.cfg
+
+# Python
+__pycache__/
+*.py[cod]
+
+**/debug-*.log

@@ -1,0 +1,28 @@
+services:
+  riftbreaker-server:
+    build: .
+    image: riftbreaker-dedicated:latest
+    container_name: riftbreaker-dedicated
+    platform: linux/amd64
+    restart: unless-stopped
+    environment:
+      - LC_ALL=C.UTF-8
+      - LANG=C.UTF-8
+      - WINEESYNC=0
+      - WINEFSYNC=0
+    ports:
+      # LAN/direct-connect. Steam mode needs no inbound ports (outbound relay/P2P).
+      - "6321:6321/udp"
+      - "6321:6321/tcp"
+    volumes:
+      - server-data:/opt/riftbreaker
+      - wine-data:/data/.wine
+      - ./config/config.cfg:/data/config/config.cfg:ro
+      - saves-data:/data/saves
+
+
+
+volumes:
+  server-data:
+  wine-data:
+  saves-data:
